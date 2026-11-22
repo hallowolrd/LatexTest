@@ -1,55 +1,132 @@
+% ACL paper template for XeLaTeX.
+% Based on the official *ACL XeLaTeX/LuaLaTeX example:
+% https://github.com/acl-org/acl-style-files
+%
+% Review mode is enabled by default. For a camera-ready version, change
+% \usepackage[review]{acl} to \usepackage[final]{acl}.
+% For a non-anonymous preprint, use \usepackage[preprint]{acl}.
+%
+% Keep acl.sty unchanged: it is the official ACL style file.
 
-\documentclass[UTF8,a4paper,12pt]{ctexart}
+\documentclass[11pt]{article}
 
+\usepackage[review]{acl}
+
+% Recommended by the official ACL XeLaTeX/LuaLaTeX example.
+\usepackage{microtype}
+
+% XeLaTeX font setup for English-language ACL papers.
+\usepackage[english,bidi=default]{babel}
+\babelfont{rm}{TeXGyreTermesX}
+
+% Common research-paper packages.
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{graphicx}
-\usepackage{geometry}
+\usepackage{booktabs}
 
-\geometry{
-    a4paper,
-    left=2.5cm,
-    right=2.5cm,
-    top=2.5cm,
-    bottom=2.5cm
-}
+% ----------------------------------------------------------------------
+% Paper metadata
+% ----------------------------------------------------------------------
 
-\title{我的第一篇 LaTeX 学术论文}
-\author{作者姓名}
-\date{\today}
+\title{Your Paper Title}
+
+% In review mode, ACL anonymizes the author block in the submitted PDF.
+% Replace this block with the real author names and affiliations for the
+% final version, following the target conference's instructions.
+\author{Anonymous ACL submission}
 
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-这是我的第一篇 LaTeX 论文。
-本文用于测试中文排版、数学公式和 PDF 编译。
+Write your abstract here. The ACL formatting guidelines recommend keeping
+the abstract concise (normally no more than 200 words). Summarize the
+research problem, approach, main findings, and contributions.
 \end{abstract}
 
-\section{引言}
+\section{Introduction}
 
-这是论文的引言部分。
+Introduce the research problem, explain its importance, identify the gap
+in prior work, and summarize the contributions of this paper.
 
-LaTeX 可以很好地处理数学公式：
+% Citation examples:
+% \citet{Gusfield:97} discuss ...
+% This has also been studied in prior work \citep{Gusfield:97}.
 
+\section{Related Work}
+
+Discuss the most relevant prior work and explain how this paper differs
+from existing approaches.
+
+\section{Method}
+
+Describe the task formulation, model or framework, training procedure,
+and implementation details.
+
+% Example equation:
 \begin{equation}
-E=mc^2
+  \mathcal{L}(\theta)
+  = -\sum_{i=1}^{N}\log p_{\theta}(y_i \mid x_i).
 \end{equation}
 
-\section{研究方法}
+\section{Experiments}
 
-我们可以使用矩阵：
+Describe the datasets, baselines, evaluation metrics, experimental
+settings, and implementation details.
 
-\[
-A=
-\begin{bmatrix}
-1 & 2\\
-3 & 4
-\end{bmatrix}
-\]
+% Example figure. Add the actual image file before uncommenting this block.
+% \begin{figure}[t]
+%   \centering
+%   \includegraphics[width=\columnwidth]{figures/overview.pdf}
+%   \caption{Overview of the proposed approach.}
+%   \label{fig:overview}
+% \end{figure}
 
-\section{结论}
+% Example table:
+% \begin{table}[t]
+%   \centering
+%   \begin{tabular}{lcc}
+%     \toprule
+%     Method & Metric 1 & Metric 2 \\
+%     \midrule
+%     Baseline & 00.0 & 00.0 \\
+%     Ours     & 00.0 & 00.0 \\
+%     \bottomrule
+%   \end{tabular}
+%   \caption{Example results table. Replace with your experimental results.}
+%   \label{tab:results}
+% \end{table}
 
-中文 LaTeX 编译测试成功！
+\section{Results and Analysis}
+
+Report the main results, compare against baselines, and analyze the
+strengths, weaknesses, and behavior of the proposed method.
+
+\section{Conclusion}
+
+Summarize the problem, approach, findings, and implications. Avoid
+introducing claims that have not been established in the paper.
+
+\section*{Limitations}
+
+Discuss the limitations of the proposed approach, experiments, data, and
+evaluation. Adapt this section to the requirements of the target venue.
+
+% Acknowledgments must be omitted from the anonymous review version.
+% Add the following only to the final version if required:
+% \section*{Acknowledgments}
+% We thank ...
+
+% The ACL style file sets the bibliography style to acl_natbib.
+\bibliography{custom}
+
+% Appendices come after the references in the *ACL format.
+\appendix
+
+\section{Additional Details}
+
+Add supplementary details, proofs, prompts, or analyses here when needed.
 
 \end{document}
