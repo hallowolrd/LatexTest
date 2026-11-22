@@ -1,0 +1,55 @@
+
+\documentclass[UTF8,a4paper,12pt]{ctexart}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{geometry}
+
+\geometry{
+    a4paper,
+    left=2.5cm,
+    right=2.5cm,
+    top=2.5cm,
+    bottom=2.5cm
+}
+
+\title{我的第一篇 LaTeX 学术论文}
+\author{作者姓名}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+这是我的第一篇 LaTeX 论文。
+本文用于测试中文排版、数学公式和 PDF 编译。
+\end{abstract}
+
+\section{引言}
+
+这是论文的引言部分。
+
+LaTeX 可以很好地处理数学公式：
+
+\begin{equation}
+E=mc^2
+\end{equation}
+
+\section{研究方法}
+
+我们可以使用矩阵：
+
+\[
+A=
+\begin{bmatrix}
+1 & 2\\
+3 & 4
+\end{bmatrix}
+\]
+
+\section{结论}
+
+中文 LaTeX 编译测试成功！
+
+\end{document}
