@@ -27,6 +27,11 @@
 \usepackage{booktabs}
 \usepackage{etoolbox}
 
+% 将 ACL Review 模式中的匿名作者提示也显示为中文。
+\makeatletter
+\patchcmd{\outauthor}{Anonymous ACL submission}{ACL 匿名投稿}{}{}
+\makeatother
+
 % 将摘要标题改为中文。
 \renewcommand{\abstractname}{摘要}
 
