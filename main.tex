@@ -1,43 +1,55 @@
-% ACL paper template for XeLaTeX.
-% Based on the official *ACL XeLaTeX/LuaLaTeX example:
-% https://github.com/acl-org/acl-style-files
+% ACL 论文中文初稿模板（使用 XeLaTeX 编译）。
+% 基于 ACL 官方 XeLaTeX/LuaLaTeX 示例。
+% 官方样式文件 acl.sty 保持不变。
 %
-% Review mode is enabled by default. For a camera-ready version, change
-% \usepackage[review]{acl} to \usepackage[final]{acl}.
-% For a non-anonymous preprint, use \usepackage[preprint]{acl}.
-%
-% Keep acl.sty unchanged: it is the official ACL style file.
+% 当前为 Review 匿名审稿模式。
+% 正式投稿时，请根据目标会议要求切换为 final 模式，并检查英文稿件。
 
 \documentclass[11pt]{article}
 
 \usepackage[review]{acl}
 
-% Recommended by the official ACL XeLaTeX/LuaLaTeX example.
+% ACL 官方示例推荐的宏包。
 \usepackage{microtype}
 
-% XeLaTeX font setup for English-language ACL papers.
+% 英文与中文字体设置。
+% 英文继续使用 ACL 模板的 TeX Gyre Termes。
+% 中文使用 Windows 常见字体 Microsoft YaHei（微软雅黑）。
 \usepackage[english,bidi=default]{babel}
 \babelfont{rm}{TeXGyreTermesX}
+\usepackage{xeCJK}
+\setCJKmainfont{Microsoft YaHei}
 
-% Common research-paper packages.
+% 常用论文宏包。
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{booktabs}
+\usepackage{etoolbox}
+
+% 将摘要标题改为中文。
+\renewcommand{\abstractname}{摘要}
+
+% ACL 样式文件在 thebibliography 中直接写入了 References，
+% 因此在不修改官方 acl.sty 的前提下，将参考文献标题改为中文。
+\makeatletter
+\patchcmd{\thebibliography}{References}{参考文献}{}{}
+\patchcmd{\thebibliography}{References}{参考文献}{}{}
+\patchcmd{\thebibliography}{References}{参考文献}{}{}
+\makeatother
 
 % ----------------------------------------------------------------------
-% Paper metadata
+% 论文基本信息
 % ----------------------------------------------------------------------
 
-\title{Your Paper Title}
+\title{论文标题（请替换为你的研究主题）}
 
-% In review mode, ACL anonymizes the author block in the submitted PDF.
-% Replace this block with the real author names and affiliations for the
-% final version, following the target conference's instructions.
+% Review 模式下，ACL 会自动隐藏作者信息。
+% 正式版本请替换为真实作者、机构和邮箱信息。
 \author{
-  First Author \\
-  Department, Institution \\
-  City, Country \\
+  作者姓名 \\
+  所属机构 \\
+  所在城市，国家 \\
   \texttt{author@example.com}
 }
 
@@ -46,110 +58,97 @@
 \maketitle
 
 \begin{abstract}
-Write your abstract here. The ACL formatting guidelines recommend keeping
-the abstract concise (normally no more than 200 words). Summarize the
-research problem, approach, main findings, and contributions.
+请在此撰写论文摘要。建议简要说明研究背景与问题、核心方法、主要实验结果及研究贡献。
+正式投稿时，请按照目标会议的要求控制摘要长度；ACL 通常建议摘要不超过 200 个英文单词。
 \end{abstract}
 
-\section{Introduction}
+\section{引言}
 
-Introduce the research problem, explain its importance, identify the gap
-in prior work, and summarize the contributions of this paper.
+介绍研究背景与问题，说明该问题的重要性，指出现有研究的不足，并概述本文的主要思路与贡献。
 
-% Citation examples:
-% \citet{Gusfield:97} discuss ...
-% This has also been studied in prior work \citep{Gusfield:97}.
+% 正式写作时，请在此处加入与研究问题相关的文献引用。
+% 例如：已有研究也讨论了这一问题 \citep{Gusfield:97}。
 
-\section{Related Work}
+\section{相关工作}
 
-Discuss the most relevant prior work and explain how this paper differs
-from existing approaches.
+梳理与本文最相关的已有研究，归纳不同研究方向，并说明本文与现有方法的联系和区别。
 
-% Citation example: replace this sentence and citation with work relevant
-% to your paper. It is included so the template produces a non-empty
-% bibliography and demonstrates ACL author-year citations.
-As a citation-format example, \citet{Gusfield:97} is included here.
+% 引用格式示例：\citet{Gusfield:97}。
+% 正式写作时，请将此测试引用替换为与你的研究主题相关的真实文献。
+引用格式示例：\citet{Gusfield:97}。
 
-\section{Method}
+\section{方法}
 
-Describe the task formulation, model or framework, training procedure,
-and implementation details.
+描述任务定义、模型或方法框架、训练流程以及实现细节。
 
-% Example equation:
+% 数学公式示例：
 \begin{equation}
   \mathcal{L}(\theta)
   = -\sum_{i=1}^{N}\log p_{\theta}(y_i \mid x_i).
 \end{equation}
 
-\section{Experiments}
+\section{实验}
 
-Describe the datasets, baselines, evaluation metrics, experimental
-settings, and implementation details.
+介绍所使用的数据集、基线方法（baselines）、评价指标、实验设置及实现细节。
 
-% Example figure. Add the actual image file before uncommenting this block.
+% 图片示例：将图片文件放入 figures/ 目录后，取消下面代码的注释。
 % \begin{figure}[t]
 %   \centering
 %   \includegraphics[width=\columnwidth]{figures/overview.pdf}
-%   \caption{Overview of the proposed approach.}
+%   \caption{所提出方法的整体框架。}
 %   \label{fig:overview}
 % \end{figure}
 
-% Example table:
+% 表格示例：
 % \begin{table}[t]
 %   \centering
 %   \begin{tabular}{lcc}
 %     \toprule
-%     Method & Metric 1 & Metric 2 \\
+%     方法 & 指标一 & 指标二 \\
 %     \midrule
-%     Baseline & 00.0 & 00.0 \\
-%     Ours     & 00.0 & 00.0 \\
+%     基线方法 & 00.0 & 00.0 \\
+%     本文方法 & 00.0 & 00.0 \\
 %     \bottomrule
 %   \end{tabular}
-%   \caption{Example results table. Replace with your experimental results.}
+%   \caption{实验结果示例，请替换为实际结果。}
 %   \label{tab:results}
 % \end{table}
 
-\section{Results and Analysis}
+\section{结果与分析}
 
-Report the main results, compare against baselines, and analyze the
-strengths, weaknesses, and behavior of the proposed method.
+报告主要实验结果，与基线方法进行比较，并分析所提出方法的优势、局限及具体表现。
 
-\section{Conclusion}
+\section{结论}
 
-Summarize the problem, approach, findings, and implications. Avoid
-introducing claims that have not been established in the paper.
+总结本文的研究问题、提出的方法、主要发现及研究意义。避免在结论中引入正文和实验尚未支持的新观点。
 
-\section*{Limitations}
+\section*{局限性}
 
-Discuss the limitations of the proposed approach, experiments, data, and
-evaluation. Adapt this section to the requirements of the target venue.
+讨论所提出方法、实验设计、数据集和评价方式的局限性，并根据目标会议的要求进行调整。
 
-% Optional ethics section. Include it when relevant to your work.
-% Place it after the conclusion and before the references.
-% Discuss relevant ethical issues such as data consent and licensing, privacy,
-% personally identifiable or sensitive information, annotation practices,
-% potential harms or misuse, and mitigation measures.
-% Do not use this section for new experiments, figures, or additional analysis.
-% Uncomment the following lines and replace the prompt with your discussion.
+% 可选章节：当研究涉及相关伦理问题时，可以加入本节。
+% 建议讨论数据授权与许可、隐私保护、敏感信息、标注流程、
+% 潜在危害或滥用风险，以及相应的缓解措施。
+% 需要使用时，取消下面代码的注释，并替换为针对本文研究的具体讨论。
 %
-% \section*{Ethical considerations}
+% \section*{伦理考量}
 %
-% Discuss the ethical considerations and broader impacts relevant to this work.
-%
+% 讨论本研究涉及的伦理问题及其潜在影响。
 
-% Acknowledgments must be omitted from the anonymous review version.
-% Add the following only to the final version if required:
-% \section*{Acknowledgments}
-% We thank ...
+% 匿名审稿版本中不要添加致谢。
+% 仅在目标会议要求且进入正式版本时，按要求添加致谢。
+% \section*{致谢}
+% 在此填写致谢内容。
 
-% The ACL style file sets the bibliography style to acl_natbib.
+% 参考文献使用 ACL 官方 acl_natbib 样式。
+% custom.bib 保存参考文献条目。
 \bibliography{custom}
 
-% Appendices come after the references in the *ACL format.
+% ACL 格式要求附录位于参考文献之后。
 \appendix
 
-\section{Additional Details}
+\section{补充细节}
 
-Add supplementary details, proofs, prompts, or analyses here when needed.
+在此补充必要的技术细节、证明、提示词（prompts）或其他分析。
 
 \end{document}
